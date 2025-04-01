@@ -5,7 +5,7 @@ CREATE TABLE IF NOT EXISTS "contents" (
     description TEXT NOT NULL,
     image TEXT NULL,
     status VARCHAR(20) NOT NULL DEFAULT 'PUBLISH',
-    tags TEXT[] NULL,
+    tags TEXT NOT NULL,
     category_id INT REFERENCES categories(id) ON DELETE CASCADE,
     created_by_id INT REFERENCES users(id) ON DELETE CASCADE,
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
