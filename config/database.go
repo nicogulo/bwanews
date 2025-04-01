@@ -1,6 +1,7 @@
 package config
 
 import (
+	"bwanews/database/seed"
 	"fmt"
 
 	"github.com/rs/zerolog/log"
@@ -34,6 +35,8 @@ func (cfg Config) ConnectionPostgress() (*Postgres, error) {
 		log.Error().Err(err).Msg("[ConnectionPostgress-2] Failed connecting to database" + cfg.PsqlDB.Host)
 		return nil, err
 	}
+
+	seed.SeedRoles(db)
 
 	sqlDb.SetMaxOpenConns(cfg.PsqlDB.DbMaxOpen)
 	sqlDb.SetMaxIdleConns(cfg.PsqlDB.DbMaxIdle)
